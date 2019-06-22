@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+    {% for note in user.notes.all %}
+        <a href="{% url 'notes:detail' pk=note.pk %}">
+            <div class="note_list">
+                <div class="note_title_list">{{ note.title }}</div>
+                <div class="created">Created: {{ note.date_created }}</div>
+            </div>
+        </a>
+
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

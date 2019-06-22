@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if request.user.is_authenticated and note.user == user %}
+    <div class="note_detail_container">
+        <div class="note_title_detail">{{ note.title }}</div>
+        <div class="created">Created: {{ note.date_created }}</div>
+        <div class="note_detail_buttons">
+            <a class="btn btn-warning" href="{% url 'notes:update' pk=note.pk %}">Update</a>
+            <a class="btn btn-danger" href="{% url 'notes:delete' pk=note.pk %}">Delete</a>
+        </div>
+        <div class="note_content">{{ note.content|safe|linebreaksbr }}</span>
+    </div>
+    {% endif %}
+{% endblock %}
